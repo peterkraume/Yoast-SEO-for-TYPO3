@@ -1,8 +1,9 @@
 <?php
 
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 $llPrefix = 'LLL:EXT:yoast_seo/Resources/Private/Language/BackendModule.xlf:';
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns(
+ExtensionManagementUtility::addTCAcolumns(
     'tt_content',
     [
         'tx_yoastseo_linking_suggestions' => [
@@ -23,6 +24,6 @@ foreach ($GLOBALS['TCA']['tt_content']['types'] as $type => $config) {
         str_replace(
             'bodytext;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:bodytext_formlabel,',
             'bodytext;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:bodytext_formlabel,tx_yoastseo_linking_suggestions,',
-            $GLOBALS['TCA']['tt_content']['types'][$type]['showitem']
+            (string) $GLOBALS['TCA']['tt_content']['types'][$type]['showitem']
         );
 }
